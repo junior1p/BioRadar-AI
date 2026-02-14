@@ -153,20 +153,6 @@ function updateIndexHtml(paper, htmlFilename) {
   console.log("[Update] index.html");
 }
 
-function gitPush() {
-  if (!CONFIG.enableGitPush) {
-    console.log("[Git] Skipped");
-    return;
-  }
-  try {
-    execSync("git add .");
-    execSync("git commit -m \\"[auto-post] " + formatDate(new Date()) + ": Auto-generated article and HTML\\"");
-    execSync("git push");
-    console.log("[Git] Pushed successfully");
-  } catch (err) {
-    console.error("[Git] Error:", err.message);
-  }
-}
 
 async function main() {
   console.log("BioTender Auto Post v2.0");
@@ -188,7 +174,6 @@ async function main() {
 
   const markdown = await generateMarkdown(selectedPaper);
   saveFiles(selectedPaper, markdown);
-  gitPush();
 
   console.log("Completed!");
 }

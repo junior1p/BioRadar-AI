@@ -30,7 +30,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
           API_BASE_URL: https://api.gptsapi.net
           TEXT_MODEL: gpt-4.1-mini
-          GIT_PUSH: 'true'
+          GIT_PUSH: 'false'
         run: npm run auto-post
       
       - name: Configure Git
@@ -38,15 +38,16 @@ jobs:
           git config --global user.name "BioTender Bot"
           git config --global user.email "bot@biotender.io"
       
-      - name: Push changes
+      - name: Commit and push changes
         if: success()
         run: |
-          git add content/posts/
+          git pull --rebase origin main
+          git add .
           if git diff --cached --quiet; then
             echo "No new posts to commit"
           else
-            git commit -m "[auto-post] $(date +%Y-%m-%d): Auto-generated article"
-            git push
+            git commit -m "[auto-post] $(date +%Y-%m-%d): Auto-generated article and HTML"
+            git push origin main
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
