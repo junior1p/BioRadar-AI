@@ -1,0 +1,22 @@
+{
+  "name": "bioradar-ai",
+  "version": "1.0.0",
+  "description": "Automated Research Paper Discovery and Analysis Platform",
+  "type": "module",
+  "scripts": {
+    "auto-post": "node scripts/autoPost.js",
+    "setup": "echo 'Setup guide: Add GLM_API_KEY and GIT_PUSH=true to .env'"
+  },
+  "keywords": [
+    "AI",
+    "Biology",
+    "Blog",
+    "ArXiv",
+    "BioRxiv"
+  ],
+  "author": "Max",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BioRadar AI</title>
+
+<style>
+:root{
+  --bg-0:#f4f2ee;
+  --bg-1:#fbfaf7;
+  --ink:#0b0b0b;
+  --muted:#4b4b4b;
+  --soft:#7a7a7a;
+  --line:rgba(0,0,0,.08);
+  --max:1000px;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+               "PingFang SC","Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 700px at 20% 20%, rgba(0,0,0,.05), transparent 55%),
+    radial-gradient(1000px 700px at 80% 30%, rgba(0,0,0,.04), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ text-decoration:none; color:inherit; }
+
+.wrap{
+  width:min(var(--max), calc(100% - 64px));
+  margin:0 auto;
+}
+
+/* 顶部极简导航 */
+
+.topbar{
+  padding:28px 0 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size: clamp(18px, 3vw, 48px);
+  font-weight:950;
+  letter-spacing:-.06em;
+  color:var(--ink);
+}
+
+.nav{
+  display:flex;
+  gap:28px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+
+.nav a:hover{ color:var(--ink); }
+
+/* HERO */
+
+.hero{
+  padding:6vh 0 8vh;
+  text-align:center;
+  display:block;
+}
+
+.logo{
+  display:none;
+}
+
+.title{
+  margin:0;
+  font-size: clamp(80px, 16vw, 200px);
+  font-weight:950;
+  letter-spacing:-.06em;
+  line-height:.95;
+  margin-bottom:20px;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+.sub{
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.01em;
+  margin-bottom:24px;
+  color:var(--muted);
+}
+
+.desc{
+  max-width:700px;
+  margin:0 auto;
+  font-size:16px;
+  line-height:1.9;
+  color:var(--muted);
+}
+
+/* 博客列表 */
+
+section{
+  padding:40px 0 80px;
+}
+
+.section-title{
+  font-size:14px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--soft);
+  margin-bottom:30px;
+}
+
+.post{
+  padding:28px 0;
+  border-top:1px solid var(--line);
+}
+
+.post:first-child{
+  border-top:1px solid var(--line);
+}
+
+.category{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--soft);
+  margin-bottom:8px;
+}
+
+.post h3{
+  margin:0 0 8px;
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:-.015em;
+}
+
+.post p{
+  margin:0 0 8px;
+  font-size:15.5px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
+.meta{
+  font-size:12px;
+  color:var(--soft);
+}
+
+.btn{
+  display:block;
+  width:fit-content;
+  margin:20px auto 0;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:4px;
+}
+
+.btn:hover{
+  opacity:.6;
+}
+
+footer{
+  padding:60px 0 40px;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="topbar">
+  <span class="brand">BioTender</span>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="archive.html">Archive</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1 class="title">BioRadar AI</h1>
+  <div class="sub">自动抓取和深度分析 AI×生命科学前沿研究</div>
+  <div class="desc">
+    每日自动采集 ArXiv 和 BioRxiv 的高质量论文，用 AI 生成深度分析。<br/>
+    关注蛋白质结构、生成模型与 AI 制药的交叉突破。
+  </div>
+  <a href="mailto:max@biotender.io" class="btn">Get in Touch</a>
+</div>
+
+<section>
+  <div class="section-title">Latest Essays</div>
+
+  <!-- 文章会由自动化系统生成到这里 -->
+  <div style="text-align: center; padding: 60px 0; color: var(--soft);">
+    <p style="font-size: 14px;">等待第一篇文章的生成...</p>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 BioRadar AI · Powered by BioTender
+</footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>About · BioTender</title>
+
+<style>
+:root{
+  --bg-0:#f4f2ee;
+  --bg-1:#fbfaf7;
+  --ink:#0b0b0b;
+  --muted:#4b4b4b;
+  --soft:#7a7a7a;
+  --line:rgba(0,0,0,.08);
+  --max:1000px;
+}
+
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",
+               "PingFang SC","Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 700px at 20% 20%, rgba(0,0,0,.05), transparent 55%),
+    radial-gradient(1000px 700px at 80% 30%, rgba(0,0,0,.04), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  -webkit-font-smoothing: antialiased;
+}
+
+a{ text-decoration:none; color:inherit; }
+
+.wrap{
+  width:min(var(--max), calc(100% - 64px));
+  margin:0 auto;
+}
+
+.topbar{
+  padding:28px 0 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size: clamp(18px, 3vw, 48px);
+  font-weight:950;
+  letter-spacing:-.06em;
+  color:var(--ink);
+}
+
+.nav{
+  display:flex;
+  gap:28px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+
+.nav a:hover{ color:var(--ink); }
+
+.hero{
+  padding:6vh 0 4vh;
+  text-align:center;
+}
+
+.title{
+  margin:0;
+  font-size: clamp(60px, 12vw, 120px);
+  font-weight:950;
+  letter-spacing:-.06em;
+  line-height:.95;
+  margin-bottom:2vh;
+}
+
+.subtitle{
+  font-size:20px;
+  color:var(--muted);
+  margin-bottom:4vh;
+}
+
+section{
+  padding:40px 0 80px;
+  max-width:700px;
+  margin:0 auto;
+}
+
+.section-content{
+  font-size:16px;
+  line-height:2;
+  color:var(--muted);
+}
+
+.section-content p{
+  margin:0 0 24px;
+}
+
+.section-content h2{
+  font-size:20px;
+  font-weight:900;
+  margin:40px 0 20px;
+  color:var(--ink);
+}
+
+.section-content ul{
+  margin:0 0 24px;
+  padding-left:24px;
+}
+
+.section-content li{
+  margin-bottom:12px;
+}
+
+.contact{
+  margin-top:40px;
+  padding-top:40px;
+  border-top:1px solid var(--line);
+}
+
+.contact p{
+  margin:0;
+}
+
+.social{
+  margin-top:20px;
+  display:flex;
+  gap:20px;
+}
+
+.social a, .social-btn{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:4px;
+  transition:opacity 0.2s;
+  background:none;
+  border:none;
+  color:inherit;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.social a:hover, .social-btn:hover{
+  opacity:.6;
+}
+
+/* Modal Styles */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  z-index:1000;
+  align-items:center;
+  justify-content:center;
+  animation:fadeIn 0.3s ease-out;
+}
+
+.modal.active{
+  display:flex;
+}
+
+.modal-content{
+  background:var(--bg-1);
+  border-radius:20px;
+  padding:40px;
+  position:relative;
+  max-width:420px;
+  width:90%;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.15),
+    0 0 60px rgba(0,200,255,.2),
+    inset 0 1px 0 rgba(255,255,255,.3);
+  border:1px solid rgba(0,200,255,.1);
+  animation:slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:32px;
+  height:32px;
+  background:none;
+  border:none;
+  font-size:24px;
+  cursor:pointer;
+  color:var(--soft);
+  transition:color 0.2s;
+}
+
+.modal-close:hover{
+  color:var(--ink);
+}
+
+.modal-header{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.modal-header h3{
+  margin:0;
+  font-size:22px;
+  font-weight:900;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+
+.modal-qr{
+  text-align:center;
+  margin:30px 0;
+}
+
+.modal-qr img{
+  width:240px;
+  height:240px;
+  border-radius:16px;
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.1),
+    inset 0 1px 2px rgba(255,255,255,.5);
+  background:white;
+  padding:8px;
+  border:1px solid var(--line);
+}
+
+.modal-tip{
+  text-align:center;
+  color:var(--soft);
+  font-size:13px;
+  margin-top:20px;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+  }
+  to{
+    opacity:1;
+  }
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+footer{
+  padding:60px 0 40px;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="topbar">
+  <span class="brand">BioTender</span>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="archive.html">Archive</a>
+    <a href="about.html">About</a>
+  </div>
+</div>
+
+<div class="hero">
+  <h1 class="title">BioRadar AI</h1>
+  <div class="subtitle">前沿研究自动采集与深度分析平台</div>
+</div>
+
+<section>
+  <div class="section-content">
+    
+    <p>
+      BioRadar AI 是一个自动化的研究论文采集与深度分析平台。<br/><br/>
+      每天自动从 ArXiv 和 BioRxiv 抓取最新的 AI×生命科学交叉论文，通过关键词过滤和智能分析，为你呈现最相关的前沿研究洞察。
+    </p>
+
+    <h2>系统能力</h2>
+    <ul>
+      <li><strong>自动采集</strong> - 每日定时从 ArXiv 和 BioRxiv 抓取论文</li>
+      <li><strong>智能过滤</strong> - AI 与生物学关键词双条件过滤，去除噪音</li>
+      <li><strong>深度分析</strong> - 用 GPT-4.1 生成 1000+ 字的详细解读</li>
+      <li><strong>持续更新</strong> - 每篇文章自动推送，云端部署，永不缺席</li>
+    </ul>
+
+    <h2>核心关注</h2>
+    <ul>
+      <li>蛋白质结构预测（AlphaFold、扩散模型）</li>
+      <li>AI 生成模型在生物领域的应用</li>
+      <li>AI 药物发现与分子设计</li>
+      <li>研究范式从计算驱动到数据驱动的转变</li>
+    </ul>
+
+    <div class="contact">
+      <p><strong>联系方式</strong></p>
+      <div class="social">
+        <button class="social-btn" onclick="openWeChat()">WeChat</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 BioRadar AI · Powered by BioTender
+</footer>
+
+</div>
+
+<!-- WeChat QR Modal -->
+<div class="modal" id="wechatModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeWeChat()">&times;</button>
+    <div class="modal-header">
+      <h3>Connect on WeChat</h3>
+    </div>
+    <div class="modal-qr">
+      <img src="QRCode.jpg" alt="WeChat QR Code" />
+    </div>
+    <div class="modal-tip">
+      扫一扫二维码，联系我们
+    </div>
+  </div>
+</div>
+
+<script>
+function openWeChat(){
+  document.getElementById('wechatModal').classList.add('active');
+}
+
+function closeWeChat(){
+  document.getElementById('wechatModal').classList.remove('active');
+}
+
+// 点击背景关闭
+document.addEventListener('DOMContentLoaded', function(){
+  const modal = document.getElementById('wechatModal');
+  modal.addEventListener('click', function(e){
+    if(e.target === modal){
+      closeWeChat();
+    }
+  });
+  
+  // ESC 键关闭
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      closeWeChat();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+
+

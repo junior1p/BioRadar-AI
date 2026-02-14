@@ -1,0 +1,74 @@
+name: Auto Post
+
+on:
+  schedule:
+    # 每天 UTC 时间 00:00 运行（北京时间 8:00）
+    - cron: '0 0 * * *'
+  
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  auto-post:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run auto-post
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_BASE_URL: https://api.gptsapi.net
+          TEXT_MODEL: gpt-4.1-mini
+          GIT_PUSH: 'true'
+        run: npm run auto-post
+      
+      - name: Configure Git
+        run: |
+          git config --global user.name "BioTender Bot"
+          git config --global user.email "bot@biotender.io"
+      
+      - name: Push changes
+        if: success()
+        run: |
+          git add content/posts/
+          if git diff --cached --quiet; then
+            echo "No new posts to commit"
+          else
+            git commit -m "[auto-post] $(date +%Y-%m-%d): Auto-generated article"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Notify on failure
+        if: failure()
+        run: echo "Auto-post failed. Check logs for details."
+
+  deploy:
+    needs: auto-post
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Deploy to Vercel
+        uses: vercel/action@master
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          production: true

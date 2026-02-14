@@ -1,0 +1,39 @@
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 依赖
+node_modules/
+package-lock.json
+yarn.lock
+
+# 日志
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 临时文件
+.tmp/
+temp/
+*.swp
+*.swo
+*~
+
+# 构建输出（如果有）
+dist/
+build/
+.next/
+
+# IDE
+.vscode/
+.idea/
+.env.local.*.js
